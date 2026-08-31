@@ -6,12 +6,11 @@ from sklearn.datasets import make_classification
 
 
 def logistic_regression(X, y):
-    pipe = Pipeline([
-        ('scaler', StandardScaler()),
-        ('clf', LogisticRegression())
-    ])
+    pipe = Pipeline([("scaler", StandardScaler()), ("clf", LogisticRegression())])
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, stratify=y, random_state=42
+    )
     pipe.fit(X_train, y_train)
     print(pipe.score(X_test, y_test))
 

@@ -78,10 +78,10 @@ v = np.array([3, 2])
 w = np.array([1, 4])
 
 # Addition
-print(v + w)              # [4, 6]
+print(v + w)  # [4, 6]
 
 # Scalar multiplication
-print(2 * v)              # [6, 4]
+print(2 * v)  # [6, 4]
 
 # Magnitude
 print(np.linalg.norm(v))  # 3.606
@@ -152,13 +152,13 @@ a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
 
 # Dot product — three equivalent ways
-print(np.dot(a, b))    # 32
-print(a @ b)            # 32  (preferred modern syntax)
-print(np.sum(a * b))    # 32  (element-wise multiply then sum)
+print(np.dot(a, b))  # 32
+print(a @ b)  # 32  (preferred modern syntax)
+print(np.sum(a * b))  # 32  (element-wise multiply then sum)
 
 # Cosine similarity
 cos_sim = (a @ b) / (np.linalg.norm(a) * np.linalg.norm(b))
-print(cos_sim)          # 0.9746
+print(cos_sim)  # 0.9746
 ```
 
 ---
@@ -230,22 +230,21 @@ $$A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \quad \Rightarrow \qu
 ### NumPy in Practice
 
 ```python
-A = np.array([[2, 0],
-              [0, 3]])
+A = np.array([[2, 0], [0, 3]])
 v = np.array([1, 1])
 
 # Matrix-vector multiplication
-print(A @ v)         # [2, 3]
+print(A @ v)  # [2, 3]
 
 # Transpose
 print(A.T)
 
 # Identity matrix
-I = np.eye(3)        # 3×3 identity
+I = np.eye(3)  # 3×3 identity
 
 # Inverse (if it exists)
 A_inv = np.linalg.inv(A)
-print(A_inv @ A)     # ≈ Identity
+print(A_inv @ A)  # ≈ Identity
 ```
 
 ---
@@ -300,13 +299,11 @@ The **inner dimensions must match** ($n$). The result has the **outer dimensions
 ### NumPy in Practice
 
 ```python
-A = np.array([[1, 2],
-              [3, 4]])
-B = np.array([[5, 6],
-              [7, 8]])
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
 
 # Matrix multiplication
-C = A @ B            # preferred
+C = A @ B  # preferred
 C = np.matmul(A, B)  # equivalent
 # C = np.dot(A, B)   # works but @ is clearer
 
@@ -356,8 +353,7 @@ $$\det\begin{bmatrix} a & b \\ c & d \end{bmatrix} = ad - bc$$
 ### NumPy in Practice
 
 ```python
-A = np.array([[3, 1],
-              [0, 2]])
+A = np.array([[3, 1], [0, 2]])
 
 print(np.linalg.det(A))  # 6.0 → area scales by 6×
 ```
@@ -390,8 +386,7 @@ If $\det(A) = 0$, the matrix collapses a dimension. You've lost information — 
 
 ```python
 # Solve: 2x + y = 5, x + 3y = 7
-A = np.array([[2, 1],
-              [1, 3]])
+A = np.array([[2, 1], [1, 3]])
 b = np.array([5, 7])
 
 x = np.linalg.solve(A, b)  # more stable than inv(A) @ b
@@ -470,22 +465,20 @@ This is why symmetric matrices appear everywhere in ML — covariance matrices, 
 ### NumPy in Practice
 
 ```python
-A = np.array([[3, 1],
-              [0, 2]])
+A = np.array([[3, 1], [0, 2]])
 
 eigenvalues, eigenvectors = np.linalg.eig(A)
-print("Eigenvalues:", eigenvalues)    # [3., 2.]
+print("Eigenvalues:", eigenvalues)  # [3., 2.]
 print("Eigenvectors (columns):\n", eigenvectors)
 
 # Verify: A @ v = λ * v
-v = eigenvectors[:, 0]   # first eigenvector
-λ = eigenvalues[0]       # first eigenvalue
+v = eigenvectors[:, 0]  # first eigenvector
+λ = eigenvalues[0]  # first eigenvalue
 print("A @ v  =", A @ v)
 print("λ * v  =", λ * v)  # should be the same!
 
 # For symmetric matrices, use eigh (more stable):
-S = np.array([[4, 2],
-              [2, 3]])
+S = np.array([[4, 2], [2, 3]])
 eigenvalues, eigenvectors = np.linalg.eigh(S)
 
 # Reconstruct: A = V @ diag(λ) @ V^(-1)
@@ -601,7 +594,7 @@ U, S, Vt = np.linalg.svd(X_centered, full_matrices=False)
 # Singular values tell you the importance of each component
 # Variance explained by component i: S[i]² / sum(S²)
 
-variance_explained = (S ** 2) / np.sum(S ** 2)
+variance_explained = (S**2) / np.sum(S**2)
 print("Variance explained:", variance_explained)
 ```
 
@@ -626,9 +619,7 @@ x = np.linalg.pinv(A) @ b
 ### NumPy in Practice
 
 ```python
-A = np.array([[1, 2, 3],
-              [4, 5, 6],
-              [7, 8, 9]])
+A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
 U, S, Vt = np.linalg.svd(A)
 
